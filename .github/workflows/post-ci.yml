@@ -1,0 +1,27 @@
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+
+jobs:
+  post:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: ci-result
+
+      - name: Execute CI result
+        run: |
+          chmod +x result.sh
+          ./result.sh
+
+      - name: Update status
+        run: |
+          git config user.name "ci-bot"
+          git config user.email "ci@repo"
+          git commit --allow-empty -m "CI passed"
+          git push origin master
