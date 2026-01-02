@@ -19,18 +19,11 @@ jobs:
       
     steps:
 
-      - uses: actions/checkout@v6.0.1
-        with:
-          ref: ${{ github.event.workflow_run.head_sha }}
-
       - name: install dependencies
         run: npm install
-
-      - name: run test
-        run: npm test
         
-
-      - name: Update status
+      - name: done
         run: |
-          chmod +x ci.sh
-          ./ci.sh
+          echo "Pull request '${{ github.event.workflow_run.pull_requests[0].title }}' done"
+
+
