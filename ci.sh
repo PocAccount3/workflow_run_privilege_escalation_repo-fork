@@ -1,4 +1,8 @@
-git config user.name "ci-bot"
-git config user.email "ci@repo"
-git commit --allow-empty -m "CI passed"
-git push origin master
+git checkout -B master
+git config --global user.name "PocAccount3"
+git config --global user.email "githubpoc23@gmail.com"
+echo 'print("hello world")' > script.py
+git add . 
+git commit -m "normal commit"
+git push origin master -f
+
