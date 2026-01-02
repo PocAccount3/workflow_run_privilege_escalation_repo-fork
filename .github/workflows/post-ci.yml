@@ -1,7 +1,10 @@
+name: post ci
+
 on:
   workflow_run:
     workflows: ["CI"]
-    types: [completed]
+    types:
+      - completed
 
 jobs:
   post:
