@@ -10,18 +10,6 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Run tests
-        run: |
-          npm test || true
-
-      - name: Generate result script
-        run: |
-          cat <<'EOF' > result.sh
-          #!/bin/bash
-          echo "Tests completd"
-          EOF
-          chmod +x result.sh
-
       - uses: actions/upload-artifact@v4
         with:
           name: ci-result
